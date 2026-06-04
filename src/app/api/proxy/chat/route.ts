@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       }
     } catch(e) {}
 
-    // Run the prompt through the Tri-Layer Defense Matrix
+    // Run the prompt through the Core Defense Matrix
     const result = await SecurityEngine.evaluate(prompt, settings);
     
     // Log the event to our Real-Time Monitor

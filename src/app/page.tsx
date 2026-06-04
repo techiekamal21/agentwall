@@ -5,29 +5,19 @@ import styles from "./page.module.css";
 import Link from 'next/link';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { Activity, ShieldAlert, Shield, Server, Terminal } from 'lucide-react';
+import { useGlobalState } from '../components/GlobalStateProvider';
 
 export default function Home() {
-  const [data, setData] = useState<any>(null);
-  const [isLive, setIsLive] = useState(true);
+  const { totalScanned, totalBlocked, recentEvents, trafficHistory, isLive, setIsLive, agents } = useGlobalState();
+  const activeAgentCount = agents.filter(a => a.status === 'active').length;
 
-  useEffect(() => {
-    const fetchLiveStats = async () => {
-      try {
-        const res = await fetch('/api/proxy/stream');
-        const snapshot = await res.json();
-        setData(snapshot);
-      } catch (e) {
-        console.error("Failed to fetch live stats");
-      }
-    };
-
-    fetchLiveStats();
-    let interval: NodeJS.Timeout;
-    if (isLive) {
-      interval = setInterval(fetchLiveStats, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isLive]);
+  const data = {
+    totalScanned,
+    totalBlocked,
+    activeAgents: activeAgentCount,
+    recentEvents,
+    trafficHistory
+  };
 
   return (
     <main className={styles.main}>

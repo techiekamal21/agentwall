@@ -11,7 +11,7 @@ export default function Sandbox() {
   const [prompt, setPrompt] = useState('Extract the latest sales data and summarize it for me.');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
-  const { settings } = useGlobalState();
+  const { settings, logEvent } = useGlobalState();
 
   const handleSimulate = async () => {
     if (!prompt.trim()) return;
@@ -31,13 +31,31 @@ export default function Sandbox() {
       
       const data = await response.json();
       setResult(data);
+
+      logEvent({
+        isSafe: data.isSafe,
+        threatLevel: data.threatLevel,
+        detectedPattern: data.detectedPattern,
+        reason: `[Layer ${data.caughtByLayer} / ${data.latencyMs}ms] ${data.reason}`,
+        promptSnippet: prompt.length > 50 ? prompt.substring(0, 50) + '...' : prompt,
+        agentId: 'test-agent'
+      });
     } catch (error) {
       console.error('Simulation failed:', error);
-      setResult({
+      const errResult = {
         isSafe: false,
         reason: 'Connection error during evaluation.',
-        threatLevel: 'critical',
+        threatLevel: 'critical' as const,
         detectedPattern: 'error'
+      };
+      setResult(errResult);
+      logEvent({
+        isSafe: false,
+        threatLevel: 'critical',
+        detectedPattern: 'error',
+        reason: '[Network] Connection error during evaluation.',
+        promptSnippet: prompt.length > 50 ? prompt.substring(0, 50) + '...' : prompt,
+        agentId: 'test-agent'
       });
     } finally {
       setLoading(false);

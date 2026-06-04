@@ -4,22 +4,13 @@ import { useEffect, useState } from 'react';
 import dashboardStyles from '../page.module.css';
 import Link from 'next/link';
 import { ShieldAlert, Crosshair, CheckCircle, Ban, Layers } from 'lucide-react';
+import { useGlobalState } from '../../components/GlobalStateProvider';
 
 export default function AlertsHub() {
-  const [events, setEvents] = useState<any[]>([]);
+  const { recentEvents } = useGlobalState();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const res = await fetch('/api/proxy/stream');
-      const data = await res.json();
-      setEvents(data.recentEvents.filter((e: any) => !e.isSafe));
-    };
-    
-    fetchEvents();
-    const interval = setInterval(fetchEvents, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  const events = recentEvents.filter((e: any) => !e.isSafe);
 
   return (
     <main className={dashboardStyles.main}>
@@ -109,7 +100,7 @@ export default function AlertsHub() {
                 <div>
                   <div style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.3rem' }}>Caught By:</div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-primary)', fontWeight: 600 }}>
-                    <Layers size={18} /> Tri-Layer Matrix: Layer {selectedEvent.reason.match(/Layer (\d)/)?.[1] || 3}
+                    <Layers size={18} /> Core Defense Matrix: Layer {selectedEvent.reason.match(/Layer (\d)/)?.[1] || 3}
                   </div>
                 </div>
 
