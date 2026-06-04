@@ -10,7 +10,7 @@ export type SecurityEvaluation = {
   reason: string;
   threatLevel: 'none' | 'low' | 'medium' | 'high' | 'critical';
   detectedPattern: string;
-  caughtByLayer: 1 | 2 | 3;
+  caughtByLayer: 1 | 2 | 3 | 4;
   latencyMs: number;
   isHoneypot?: boolean;
   honeypotPayload?: string;
@@ -19,7 +19,7 @@ export type SecurityEvaluation = {
 export class SecurityEngine {
   
   /**
-   * Evaluates a prompt through the Tri-Layer Defense Matrix.
+   * Evaluates a prompt through the Core Defense Matrix.
    * This architecture saves massive latency and API costs for developers
    * by catching 90% of attacks at Layer 1 & 2 before hitting the LLM.
    */
