@@ -83,13 +83,20 @@ Protects against sophisticated, mathematically derived vulnerabilities.
 
 ---
 
-## 💻 Tech Stack & Microsoft Integration
+## 💻 Tech Stack & Dependencies
 
-Built entirely to complement and enhance the **Microsoft AI Ecosystem**:
-- **Azure OpenAI (GPT-4o):** Used for complex intent evaluation in Layer 3 and serves as the protected core model.
-- **Azure AI Content Safety:** Methodologies adapted for identifying multi-turn jailbreaks.
-- **Next.js & React:** High-performance Full-Stack framework powering the Zero-Trust Command Center dashboard.
-- **Tailwind CSS & Lucide Icons:** Modern, dark-mode first UI for real-time threat monitoring.
+Built to complement and enhance the **Microsoft AI Ecosystem**, the technical stack comprises:
+
+### Core Frameworks & Libraries
+- **Next.js (v16.2.6) & React (v19.2.4):** Powering the Zero-Trust Command Center dashboard frontend and serving APIs using Next.js routes.
+- **TypeScript (v5.x):** Used for strict type definitions across the Security Proxy Engine and UI components to minimize run-time exceptions.
+- **Tailwind CSS & Lucide React:** Serving clean, reactive, dark-theme styling and modular icon configurations for the security operator HUD.
+- **Recharts (v3.8.1):** Used to visualize prompt scanning telemetry, block rate performance, and live event monitoring streams.
+- **OpenAI Node SDK (v6.39.1):** Interfacing with Azure OpenAI (GPT-4o) model endpoints to perform Layer 3 deep intent evaluations.
+
+### Microsoft Integrations
+- **Azure OpenAI (GPT-4o):** Serves as both the protected core model and the semantic classifier for Layer 3 security checks.
+- **Azure AI Content Safety Principles:** Used to structure and score intent vectors for multi-turn jailbreaks and credential exfiltration defenses.
 
 ---
 
@@ -131,14 +138,22 @@ Built entirely to complement and enhance the **Microsoft AI Ecosystem**:
 
 ## 📋 Hackathon Compliance & Disclosures
 
-### Team Members
-- **Kamal Patel** - Security Architect / Full Stack Engineer
+### Team Members & Roles
+- **Kamal Patel** - *Security Architect & Lead Full-Stack Engineer*
+  - Architected the 4-layer Waterfall Defense Matrix and developed the core Security Proxy Engine logic.
+  - Implemented the Next.js telemetry APIs, interactive security sandbox simulation HUD, and threat graph dashboards.
+- **Abhinav Kulkarni** - *Backend & Testing Engineer*
+  - Constructed the backend simulation interfaces, managed environment endpoints, and benchmarked layer-specific evaluation latencies.
+  - Authored the verification tests validating that Layer 1 & 2 edge mechanisms achieve their targeted sub-millisecond execution times.
+- **Akanksha E Arundekar** - *Testing & Agent Integration Specialist*
+  - Curated and integrated synthetic adversarial prompt libraries, verifying defense coverage against FGSM perturbations and tool injection templates.
+  - Audited agent integrations to ensure proxy schema compatibility with third-party LLM tool orchestrators.
 
 ### Development Timeline & Originality
-In accordance with the hackathon rules, this project was started and substantially built entirely during the official hackathon period (May 5, 2026 – June 7, 2026). No pre-existing projects or prior submissions were used. The intellectual property of the code belongs to the team.
+In accordance with the hackathon rules, this project was started and built entirely during the official hackathon period (May 5, 2026 – June 7, 2026). No pre-existing templates or prior submissions were utilized. All application security logic, simulated Autoencoder heuristics, and front-end HUD configurations represent original intellectual property of the team.
 
 ### AI Tools Disclosure
-This project was developed with the assistance of Generative AI coding tools (e.g., GitHub Copilot, Anthropic models) to accelerate boilerplate UI generation, architectural scaffolding, and complex state management. However, the core adversarial ML logic, system architecture, and strategic threat modeling represent meaningful, original human creativity, judgment, and engineering.
+This project was developed with the assistance of generative AI coding assistants (e.g., Anthropic Claude models, GitHub Copilot) to accelerate boilerplate UI rendering, Tailwind structural configurations, and documentation drafting. All core security code blocks, AML logic parameters, and system waterfall pathways were architected, reviewed, and finalized by the human development team.
 
 ### Data Privacy, Storage & Security Statement
 - **Data Usage:** This prototype processes zero Real-World Personally Identifiable Information (PII). Any user data processed (e.g., simulated prompts) is synthetic.
@@ -148,6 +163,7 @@ This project was developed with the assistance of Generative AI coding tools (e.
 
 ### Code of Conduct
 Our team is committed to maintaining a respectful, inclusive, and professional environment, strictly adhering to the hackathon's Code of Conduct. We ensure fair play and avoid any form of plagiarism.
+
 
 ---
 
